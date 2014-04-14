@@ -1,7 +1,7 @@
 <?php
 /*
 ==== Pertenece a la Capa de acceso a datos ===
-Clase que crea la conexion a la base de datos
+Clase que crea la conexion a la base de datos y las consultas a la base de datos
 */
 
 class Conexion {
@@ -10,36 +10,91 @@ class Conexion {
 	private $_server = 'localhost';
 	private $_base = 'colegio_emanuel';
 	private $_con;
+	private $_sql;
+	private $_resultado;
 	
+	
+	public function __construct($sql){
+		$this->_con = new mysqli();
+		$this->_sql = $sql;
+	}
+	
+//Establece la conexion con la base de datos
 	public function conectar() {
-		$this->_con = mysqli_connect($this->_server,$this->_usuario,$this->_password,$this->_base);
-		if(!$this->_con) {
+		$this->_con->connect($this->_server,$this->_usuario,$this->_password,$this->_base);
+
+		if($this->_con->connect_errno) {
 			throw new Exception('No se puede conectar con la base de datos');
-		} else return $this->_con;
+		}
+		
+		return $this->_con;
 	}
-	
+
+//Obtiene la conexcion de ser necesario
 	public function getConexion() {
-		$conerxion = self::conectar();
-		return $conexion;
+		return self::conectar();
 	}
 	
+//COnvierte en cadena de texto el objeto
 	public function __tostring(){
 		return $this->_base." - ".$this->_password." - ".$this->_server." - ".$this->_usuario;
 	}
 	
+//Cierra la conesccion de la base de datos
 	public function cerrarConexion() {
-		mysqli_close(self::getConexion());
+		$this->_con->close();
+	}
+
+//Sirve para crear las consultas de todo tipo a la base de datos
+	public function consulta($sql, $consulta){
+		$this->_resultado = $this->_con->query($sql);
+		
+		if(!$this->_resultado) {
+			throw new Exception("No se ha realizado la consulta $consulta");
+		}
+		
+		return $this->_resultado;
+	}
+	
+//Devuelve el numero de filas que tiene una consulta
+	public function cuentaSQL($resultado){
+		$this->_resultado = $resultado;
+		return $this->_resultado->num_rows;
+	}
+	
+//Crea un array asociativo y lo devuelve para el control de los datos obtenidos en la consulta
+	public function valores($resultado) {
+		$this->_resultado = $resultado;
+		return $this->_resultado->fetch_array(MYSQLI_ASSOC);
+	}
+	
+//Aprovará los cambios hechos en una transaccion
+	public function realizarTransaccion() {
+		return $this->_con->commit();
+	}
+	
+//Revertirá los cambios hecho en una transaccion
+	public function deshacerTransaccion() {
+		return $this->_con->rollback();
 	}
 	
 }
 
-//Para hacer la prueba descomentar las líenas de abajo
-
-require_once('Errores.php');
+/*
+require_once 'Errores.php';
+$persistencia = new Conexion;
 try {
-	$conexion = new Conexion;
-	echo $conexion->conectar();
-} catch(Exception $ex) {
+	$persistencia->conectar();
+	$var = $persistencia->consulta('select * from errores','tablar errores');
+	
+	echo $persistencia->cuentaSQL($var).'<br>';
+	while($row = $persistencia->valores($var)){
+		$id = $row['id_error'];
+		$dato = $row['datos_error'];
+		echo $id.' - '.$dato.'<br>';
+	}
+	
+} catch(Exception $ex){
 	$error = new Error();
 	$mensaje = $ex->getMessage();
 	$codigo = $ex->getCode();
@@ -48,5 +103,7 @@ try {
 	$clase = 'error-grave';
 	$fecha = date('d/m/Y h:i:s A');
 //	$log = $error->guardarLogError($codigo,$mensaje,$fichero,$linea,$fecha);
-	echo $error->errores($codigo,$mensaje,$linea,$clase);
+	echo $error->errores($codigo,$mensaje.' - '.$codigo,$clase);
 }
+$conexion->cerrarConexion();
+*/
