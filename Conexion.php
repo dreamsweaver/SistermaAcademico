@@ -29,11 +29,6 @@ class Conexion {
 		
 		return $this->_con;
 	}
-
-//Obtiene la conexcion de ser necesario
-	public function getConexion() {
-		return self::conectar();
-	}
 	
 //COnvierte en cadena de texto el objeto
 	public function __tostring(){
