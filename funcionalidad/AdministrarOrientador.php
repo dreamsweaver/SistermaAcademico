@@ -16,20 +16,14 @@ class administrarOrientador{
 	{
 		$this->_con->conectar();
 		$this->_sql ="INSERT INTO orientador( grado_orientador, profesor_orientador, curso_orientador, seccion_orientador) VALUES ( '".$grado_orientador."', '".$profesor_orientador."', '".$curso_orientador."', '".$seccion_orientador."' )";
-		if (!$this->_con->consulta($this->_sql, "de Profesor"))
-			{
-
-				return false;
-     			//echo "Error al Agregar al Profesor";
-
- 			}else{
-				return true;
-          		//echo "Profesor Editado";
-
- 			}
-		
+		if (!$this->_con->consulta($this->_sql, "de Profesor")){
+			return false;
+     		//echo "Error al Agregar al Profesor";
+		} else {
+			return true;
+        	//echo "Profesor Editado";
+ 		}
 	}
-	
 }
 
 /*

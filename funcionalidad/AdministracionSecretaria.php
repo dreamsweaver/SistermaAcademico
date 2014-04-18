@@ -16,12 +16,9 @@ class AdministracionSecretaria {
 	
 	public function __construct()
 	{
-
 		$this->_con = new Conexion();
 		$this->_password = new PassAleatorio();
 	}
-	
-	
 	
 	public function agregarSecretaria($nombreSecretaria, $apellidoSecretaria, $emailSecretaria, $cargoSecretaria)
 	{
@@ -31,35 +28,26 @@ class AdministracionSecretaria {
 		$pass = sha1($pass);
 		$this->_sql = "INSERT INTO secretaria(nombre_secretaria, apellido_secretaria, email_secretaria, password_secretaria, cargo_secretaria, visibilidad_secretaria)
 VALUES ('".$nombreSecretaria."', '".$apellidoSecretaria."', '".$emailSecretaria."', '".$pass."', '".$cargoSecretaria."', '1')"	;
-			if (!$this->_con->consulta($this->_sql, "de Secretaria"))
-			{
-
-				return false;
-     			//echo "Error al Grabar la Secretaria";
-
- 			}else{
-				return true;
-          		//echo "Secretaria Agregada";
-
- 			}
+		if (!$this->_con->consulta($this->_sql, "de Secretaria")){
+			return false;
+   			//echo "Error al Grabar la Secretaria";
+		}else{
+			return true;
+       		//echo "Secretaria Agregada";
+		}
 	}
 	
 	public function eliminarSecretaria($id)
 	{
 		$this->_con->conectar();
 		$this->_sql = "DELETE FROM secretaria WHERE id_secretaria ='".$id."'";
-		if (!$this->_con->consulta($this->_sql, "de Secretaria"))
-			{
-
-				return false;
-     			//echo "Error al Eliminar a la Secretaria";
-
- 			}else{
-				return true;
-          		//echo "Secretaria Eliminada";
-
- 			}
-		
+		if (!$this->_con->consulta($this->_sql, "de Secretaria")) {
+			return false;
+     		//echo "Error al Eliminar a la Secretaria";
+		} else {
+			return true;
+          	//echo "Secretaria Eliminada";
+ 		}
 	}
 	
 	public function editarSecretaria($id, $nombreSecretaria, $apellidoSecretaria, $emailSecretaria, $passwordSecretaria, $cargoSecretaria, $visibilidadSecretaria)
@@ -70,22 +58,14 @@ VALUES ('".$nombreSecretaria."', '".$apellidoSecretaria."', '".$emailSecretaria.
 		$this->_con->conectar();
 		$this->_sql = "UPDATE secretaria SET nombre_secretaria='".$nombreSecretaria."', apellido_secretaria='".$apellidoSecretaria."', email_secretaria='".$emailSecretaria."', password_secretaria='".$pass."', cargo_secretaria='".$cargoSecretaria."', visibilidad_secretaria='".$visibilidadSecretaria."' WHERE id_secretaria = '".$id."'";
 		
-		if (!$this->_con->consulta($this->_sql, "de Secretaria"))
-			{
-
-				return false;
-     			//echo "Error al Editar a la Secretaria";
-
- 			}else{
-				return true;
-          		//echo "Secretaria Editada;
-
- 			}
-
-	
+		if (!$this->_con->consulta($this->_sql, "de Secretaria")){
+			return false;
+    		//echo "Error al Editar a la Secretaria";
+		} else {
+			return true;
+        	//echo "Secretaria Editada;
+ 		}
 	}
-	
-	
 }
 
 /*

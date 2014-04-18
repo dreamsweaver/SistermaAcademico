@@ -6,7 +6,7 @@ Clase que crea la conexion a la base de datos y las consultas a la base de datos
 
 class Conexion {
 	private $_usuario = 'root';
-	private $_password = 'mio';
+	private $_password = '';
 	private $_server = 'localhost';
 	private $_base = 'colegio_emanuel';
 	private $_con;
@@ -14,9 +14,9 @@ class Conexion {
 	private $_resultado;
 	
 	
-	public function __construct($sql){
+	public function __construct(){
 		$this->_con = new mysqli();
-		$this->_sql = $sql;
+	
 	}
 	
 //Establece la conexion con la base de datos
@@ -28,6 +28,11 @@ class Conexion {
 		}
 		
 		return $this->_con;
+	}
+
+//Obtiene la conexcion de ser necesario
+	public function getConexion() {
+		return self::conectar();
 	}
 	
 //COnvierte en cadena de texto el objeto
@@ -45,7 +50,7 @@ class Conexion {
 		$this->_resultado = $this->_con->query($sql);
 		
 		if(!$this->_resultado) {
-			throw new Exception("No se ha realizado la consulta $consulta");
+			throw new Exception("No se ha realizado la consulta $consulta ");
 		}
 		
 		return $this->_resultado;

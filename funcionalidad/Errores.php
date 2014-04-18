@@ -19,14 +19,12 @@ class Error {
 	}
 
 //la variabler 'error' es el código que devuelve el objeto Exception, 'Mensaje' es el mensaje que devuelve el throw Exception, 'clase' es la clase CSS que llevará para darle formato
-	public function errores($error,$mensaje,$linea,$archivo,$clase='') {
+	public function errores($error,$mensaje,$clase='') {
 		return "
 		<div class='$clase'>
 			<h2>ERROR</h2>
 			<p>Sentimos comunicarle que se ha producido un error de tipo de error: $error<br />
-			Servidor dice: $mensaje<br>
-			Linea: $linea<br>
-			Archivo: $archivo</p>
+			Servidor dice: $mensaje</p>
 		</div>";
 	}
 	
