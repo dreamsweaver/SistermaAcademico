@@ -1,40 +1,38 @@
 <?php
 /* capa funcionalidad */
- require_once("../cgi-bin/Conexion.php");
- require_once("PassAleatorio.php");
+require_once("../cgi-bin/Conexion.php");
+require_once("PassAleatorio.php");
  
- class AdministrarProfesores
- {
-private $_idProfesor;
-private $_nombreProfesor;
-private $_apellidoProfesor;
-private $_emailProfesor;
-private $_cargoProfesor;
-private $_con;
-private $_password;
+class AdministrarProfesores
+{
+	private $_idProfesor;
+	private $_nombreProfesor;
+	private $_apellidoProfesor;
+	private $_emailProfesor;
+	private $_cargoProfesor;
+	private $_con;
+	private $_password;
   
     public function __construct($nombre, $apellido, $email, $cargo)
-  {
-   $this->_nombreProfesor=$nombre;
-   $this->_apellidoProfesor=$apellido;
-   $this->_emailProfesor=$email;
-   $this->_cargoProfesor=$cargo;
-   $this->_con= new Conexion;
-   $this->_password = new PassAleatorio();
-  }
- 	public function verPerfil($idProfesor)
+  	{
+		$this->_nombreProfesor=$nombre;
+		$this->_apellidoProfesor=$apellido;
+		$this->_emailProfesor=$email;
+		$this->_cargoProfesor=$cargo;
+		$this->_con= new Conexion;
+		$this->_password = new PassAleatorio();
+	}
+ 	
+	
+	public function verPerfil($idProfesor)
 	{
 		$this->_con->conectar();
 		$res= $this->_con->consulta("SELECT * FROM profesores WHERE id_profesor='".$idProfesor."'", "Ver Perfil de Profesor");
-		if ($fila=$this->_con->valores($res)){
-			$nombre=$fila['nombre_profesor'];
-			$apellido=$fila['apellido_profesor'];
-			$email=$fila['email_profesor'];
-			$cargo=$fila['cargo_profesor'];
-			}else{
-				echo "No hay datos que mostrar!";
-			}
-			return $nombre." ".$apellido." ".$email." ".$cargo;
+		if ($fila = $this->_con->valores($res)){
+			return $fila;	
+		}else{
+			return "No hay datos que mostrar!";
+		}
 	}
 	
 	public function agregarProfesor($nombre, $apellido, $email, $cargo)
@@ -47,10 +45,9 @@ private $_password;
 VALUES ('".$nombre."', '".$apellido."', '".$email."', '".$pass."', '".$cargo."', '1')";
 		if (!$this->_con->consulta($this->_sql, "Agregar Profesor")){
 			return false;
-			//echo "Error al agregar Profesor";
  		} else {
 			return true;
-			//echo "Profesor Agregado";
+
  		}
 	}
 	
@@ -59,15 +56,11 @@ VALUES ('".$nombre."', '".$apellido."', '".$email."', '".$pass."', '".$cargo."',
 		$this->_con->conectar();
 		$this->_sql = "DELETE FROM profesores WHERE id_profesor ='".$idProfesor."'";
 		if (!$this->_con->consulta($this->_sql, "Eliminar Profesor"))
-			{
-
-				//return false;
-     			echo "Error al Eliminar Profesor";
-
- 			}else{
-				//return true;
-          		echo "Profesor Eliminado";
- 			}
+		{
+			return false;
+ 		}else{
+			return true;
+ 		}
 	}
 	
 	public function editarProfesor($nombre, $apellido, $pass, $cargo, $visibilidad, $idProfesor)
@@ -79,11 +72,5 @@ VALUES ('".$nombre."', '".$apellido."', '".$email."', '".$pass."', '".$cargo."',
 			 return true;
 		}
 	}
+	
  }
-
-/* $obj2= new AdministrarProfesores("", "", "","");
- //echo $obj2->verPerfil(1);
- //$obj2->agregarProfesor("luis", "murillo", "gay.com", 3);
- //$obj2->eliminarProfesor(3);
- $obj2->editarProfesor("luis","molina", "huehue", 3, 1, 1);
-*/

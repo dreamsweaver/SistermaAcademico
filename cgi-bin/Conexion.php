@@ -5,8 +5,8 @@ Clase que crea la conexion a la base de datos y las consultas a la base de datos
 */
 
 class Conexion {
-	private $_usuario = 'root';
-	private $_password = '';
+	private $_usuario = 'cemanuel';
+	private $_password = 'cemanuel';
 	private $_server = 'localhost';
 	private $_base = 'colegio_emanuel';
 	private $_con;
@@ -46,11 +46,11 @@ class Conexion {
 	}
 
 //Sirve para crear las consultas de todo tipo a la base de datos
-	public function consulta($sql, $consulta){
+	public function consulta($sql, $errorMensaje){
 		$this->_resultado = $this->_con->query($sql);
 		
 		if(!$this->_resultado) {
-			throw new Exception("No se ha realizado la consulta $consulta ");
+			throw new Exception("No se ha realizado la consulta $errorMensaje");
 		}
 		
 		return $this->_resultado;
@@ -79,31 +79,3 @@ class Conexion {
 	}
 	
 }
-
-/*
-require_once 'Errores.php';
-$persistencia = new Conexion;
-try {
-	$persistencia->conectar();
-	$var = $persistencia->consulta('select * from errores','tablar errores');
-	
-	echo $persistencia->cuentaSQL($var).'<br>';
-	while($row = $persistencia->valores($var)){
-		$id = $row['id_error'];
-		$dato = $row['datos_error'];
-		echo $id.' - '.$dato.'<br>';
-	}
-	
-} catch(Exception $ex){
-	$error = new Error();
-	$mensaje = $ex->getMessage();
-	$codigo = $ex->getCode();
-	$fichero = $ex->getFile();
-	$linea = $ex->getLine();
-	$clase = 'error-grave';
-	$fecha = date('d/m/Y h:i:s A');
-//	$log = $error->guardarLogError($codigo,$mensaje,$fichero,$linea,$fecha);
-	echo $error->errores($codigo,$mensaje.' - '.$codigo,$clase);
-}
-$conexion->cerrarConexion();
-*/

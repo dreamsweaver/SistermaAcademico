@@ -30,10 +30,8 @@ class AdministracionSecretaria {
 VALUES ('".$nombreSecretaria."', '".$apellidoSecretaria."', '".$emailSecretaria."', '".$pass."', '".$cargoSecretaria."', '1')"	;
 		if (!$this->_con->consulta($this->_sql, "de Secretaria")){
 			return false;
-   			//echo "Error al Grabar la Secretaria";
 		}else{
 			return true;
-       		//echo "Secretaria Agregada";
 		}
 	}
 	
@@ -43,10 +41,8 @@ VALUES ('".$nombreSecretaria."', '".$apellidoSecretaria."', '".$emailSecretaria.
 		$this->_sql = "DELETE FROM secretaria WHERE id_secretaria ='".$id."'";
 		if (!$this->_con->consulta($this->_sql, "de Secretaria")) {
 			return false;
-     		//echo "Error al Eliminar a la Secretaria";
 		} else {
 			return true;
-          	//echo "Secretaria Eliminada";
  		}
 	}
 	
@@ -60,10 +56,8 @@ VALUES ('".$nombreSecretaria."', '".$apellidoSecretaria."', '".$emailSecretaria.
 		
 		if (!$this->_con->consulta($this->_sql, "de Secretaria")){
 			return false;
-    		//echo "Error al Editar a la Secretaria";
 		} else {
 			return true;
-        	//echo "Secretaria Editada;
  		}
 	}
 }

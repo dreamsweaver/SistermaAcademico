@@ -14,7 +14,7 @@ class Usuario {
 		$this->_email = $email;
 		$this->_id = $id;
 	}
-	
+
 	public function getNombre() {
 		return $this->_nombre;
 	}
