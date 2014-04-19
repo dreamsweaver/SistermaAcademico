@@ -35,6 +35,28 @@ class AdministrarProfesores
 		}
 	}
 	
+	public function listarProfesores(){
+		$this->_con->conectar();
+		$lista = '';
+		
+		$res = $this->_con->consulta("selet * from profesores");
+		while($fila = $this->_con->valores($res)){
+			$id = $fila['id_profesor'];
+			$nombre = $fila['nombre_profesor'];
+			$apellido = $fila['apellido_profesor'];
+			
+			$lista .= '
+			<li>
+				<span>'.$id.'</span>
+				<span>'.$nombre.'</span>
+				<span>'.$apellido.'</span>
+			</li>
+			<li><a href="/administracion/ver-profesor/'.$id.'/'.$apellido.'">Ver perfil</a></li>';
+		}
+		
+		return $lista;
+	}
+	
 	public function agregarProfesor($nombre, $apellido, $email, $cargo)
 	{
 		$this->_con->conectar();
