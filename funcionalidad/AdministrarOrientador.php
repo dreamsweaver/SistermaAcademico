@@ -1,7 +1,5 @@
 <?php
-require_once 'Conexion.php';
-
-
+require_once '../cgi-bin/Conexion.php';
 class administrarOrientador{
 	private $_sql;
 	private $_con;
@@ -15,18 +13,8 @@ class administrarOrientador{
 	{
 		$this->_con->conectar();
 		$this->_sql ="INSERT INTO orientador( grado_orientador, profesor_orientador, curso_orientador, seccion_orientador) VALUES ( '".$grado_orientador."', '".$profesor_orientador."', '".$curso_orientador."', '".$seccion_orientador."' )";
-		if (!$this->_con->consulta($this->_sql, "de Profesor")){
-			return false;
-		} else {
-			return true;
- 		}
+		return ($this->_con->consulta($this->_sql, "de Profesor"))?true:false;
+ 
 	}
 }
-
-/*
-	//probar para Agregar Orientador
-	$profesor = new administrarOrientador();
-	$profesor->agregarOrientador("3","4","2015","3");
-*/
-
 ?>

@@ -19,6 +19,7 @@ class SuperAdmin extends Usuario implements Login {
 		$this->_cargo = $cargo;
 		$this->_password = $pass;
 		$this->_con = new Conexion();
+		date_default_timezone_set("America/El_Salvador");
 		parent::__construct($nombre,$apellido,$email,$id);
 	}
 	
@@ -34,6 +35,10 @@ class SuperAdmin extends Usuario implements Login {
 			$_SESSION['superadmin']['id'] = $id;
 			setcookie('nombreSuper',$name,60*60,'/');
 			setcookie('idSuper',$id,60*60,'/');
+			$fecha = date("d/m/Y");
+			$hora = date("h:i:s A");
+			$ip = $_SERVER['REMOTE_ADDR'];
+			$this->_con->consulta("insert into log_superadmin(fecha_logsuperadmin,hora_logsuperadmin,ip_logsuperadmin,id_director_logsuperadmin) values('".$fecha."','".$hora."','".$ip."','".$id."')","No se pudo guardar el registro de inicio de sesión en la base de datos");
 			return true;
 		} else {
 			throw new Exception('No se ha encontrado al usuario o no son correctos los datos ingresados'); 

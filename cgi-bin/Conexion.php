@@ -50,7 +50,7 @@ class Conexion {
 		$this->_resultado = $this->_con->query($sql);
 		
 		if(!$this->_resultado) {
-			throw new Exception("No se ha realizado la consulta $errorMensaje");
+			throw new Exception($errorMensaje);
 		}
 		
 		return $this->_resultado;

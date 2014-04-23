@@ -1,5 +1,5 @@
 <?php
-require_once 'Conexion.php';
+require_once '../cgi-bin/Conexion.php';
 require_once 'PassAleatorio.php';
 
 class AdministracionSecretaria {
@@ -28,22 +28,14 @@ class AdministracionSecretaria {
 		$pass = sha1($pass);
 		$this->_sql = "INSERT INTO secretaria(nombre_secretaria, apellido_secretaria, email_secretaria, password_secretaria, cargo_secretaria, visibilidad_secretaria)
 VALUES ('".$nombreSecretaria."', '".$apellidoSecretaria."', '".$emailSecretaria."', '".$pass."', '".$cargoSecretaria."', '1')"	;
-		if (!$this->_con->consulta($this->_sql, "de Secretaria")){
-			return false;
-		}else{
-			return true;
-		}
+		return ($this->_con->consulta($this->_sql, "de Secretaria"))?true:false;
 	}
 	
 	public function eliminarSecretaria($id)
 	{
 		$this->_con->conectar();
 		$this->_sql = "DELETE FROM secretaria WHERE id_secretaria ='".$id."'";
-		if (!$this->_con->consulta($this->_sql, "de Secretaria")) {
-			return false;
-		} else {
-			return true;
- 		}
+		($this->_con->consulta($this->_sql, "de Secretaria"))?true:false;
 	}
 	
 	public function editarSecretaria($id, $nombreSecretaria, $apellidoSecretaria, $emailSecretaria, $passwordSecretaria, $cargoSecretaria, $visibilidadSecretaria)
@@ -53,28 +45,6 @@ VALUES ('".$nombreSecretaria."', '".$apellidoSecretaria."', '".$emailSecretaria.
 		$pass = sha1($pass);
 		$this->_con->conectar();
 		$this->_sql = "UPDATE secretaria SET nombre_secretaria='".$nombreSecretaria."', apellido_secretaria='".$apellidoSecretaria."', email_secretaria='".$emailSecretaria."', password_secretaria='".$pass."', cargo_secretaria='".$cargoSecretaria."', visibilidad_secretaria='".$visibilidadSecretaria."' WHERE id_secretaria = '".$id."'";
-		
-		if (!$this->_con->consulta($this->_sql, "de Secretaria")){
-			return false;
-		} else {
-			return true;
- 		}
+		return($this->_con->consulta($this->_sql, "de Secretaria"))?true:false;
 	}
 }
-
-/*
-	//para probar el agregar secretaria
-	$secretaria = new AdministracionSecretaria();
-	$secretaria->agregarSecretaria("Juanita", "Cartagena", "juana@hotmail.com", 1);
-
-	//para eliminar Secretaria
-	$secretaria = new AdministracionSecretaria();
-	$secretaria->eliminarSecretaria(1);
-
-	//para editar Secretaria
-	$secretaria = new AdministracionSecretaria();
-	$secretaria->editarSecretaria(1, "Laura", "Cortez", "Laura@cortez.com", "1234","2","1");
-*/
-
-
-?>

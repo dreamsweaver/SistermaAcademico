@@ -1,17 +1,16 @@
 <?php
-	/* clase que contiene funcion que genera un pass de manera Aleatoria, pertenece a la capa de funcionalidad */ 
+/* clase que contiene funcion que genera un pass de manera Aleatoria, pertenece a la capa de funcionalidad */ 
 	
-class  PassAleatorio{
-	
+class  PassAleatorio {
 	public function randomPass() 
 	{
 		$strPass = '';
-		 for($i = 0 ; $i < 6 ; $i++)
-		  {
-			   $randNum = rand(0 , 40); 
-			   switch ($randNum) 
-			   { 
-			   	case 10: $randNum = 'A'; 
+		for($i = 0 ; $i < 6 ; $i++)
+		{
+			$randNum = rand(0 , 40); 
+			switch ($randNum) 
+			{ 
+				case 10: $randNum = 'A'; 
 					break; 
 				case 11: $randNum = 'B'; 
 					break;
@@ -78,11 +77,5 @@ class  PassAleatorio{
 			} 
 		return $strPass; 
 	}
-
 }
-/*
-//para probar los password aleatorios creados
-$pass = new PassAleatorio();
-echo $pass->randomPass();
-*/
 ?>
