@@ -1,0 +1,18 @@
+@page {size: letter; margin:0.8cm;}
+@page:left {margin-left: 3cm; margin-right: 2cm;}
+@page:right {margin-left: 2cm; margin-right: 3cm;}
+#user, #menu-left, footer, .btn-opciones {display: none !important;}
+body {color: #000!important; float: none !important; width: auto !important; margin:  0 !important; padding: 0 !important; width:500px;}
+header {background:none;}
+header h1 {color:#000!important; float:right;}
+p {font: 11.5pt Georgia, "Times New Roman", Times, serif!important;}
+h1 {font: 17pt Arial, "Times New Roman", Times, serif!important;}
+h2 {font: 15pt Arial, "Times New Roman", Times, serif!important;}
+a:after {content: attr(href) "} ";}
+a:before {content: "{"attr(href);}
+.contenedor {width:98%!important;}
+.panel {margin:30px 1px!important; box-shadow:none!important; margin:5px 1px!important;}
+.boton {border:none!important; box-shadow:none; text-decoration:none; float:none; margin:0!important; padding:0!important;}
+table th {background-color:#DFDFDF!important; color:#000!important; font-weight:bold!important;}
+table td {color:#bbb!important; font-weight:normal!important;}
+.panel {page-break-after: always;}

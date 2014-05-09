@@ -22,13 +22,23 @@ class Error {
 	}
 
 //la variabler 'error' es el código que devuelve el objeto Exception, 'Mensaje' es el mensaje que devuelve el throw Exception, 'clase' es la clase CSS que llevará para darle formato
-	public function errores($error,$mensaje,$clase,$fichero,$linea) {
+	public function errores($error,$mensaje,$clase,$fichero,$linea,$opciones = array('Cancelar','derecha cancelar','','Aceptar','derecha acptar','')) {
+		$boton1    = $opciones[0];
+		$clasebtn1 = $opciones[1];
+		$urlbtn1   = $opciones[2];
+		$boton2    = $opciones[3];
+		$clasebtn2 = $opciones[4];
+		$urlbtn2   = $opciones[5];
+		
 		self::guardarLogError($error,$mensaje,$fichero,$linea);
 		return "
-		<div class='$clase'>
-			<h2>ERROR</h2>
-			<p>Sentimos comunicarle que se ha producido un error de tipo de error: $error<br />
-			Servidor dice: $mensaje</p>
+		<div class='".$clase."'>
+            <span class='cerrar-ventana derecha'><img src='/template/imagenes/boton-cerrar-mensajes.png' alt='X' /></span>
+            <h2>Error</h2>
+            <div class='contenido-mensaje'>
+            	<p>".$mensaje."</p>
+            </div>
+			<a href='".$urlbtn1."' class='boton ".$clasebtn1."'>".$boton1."</a> <a href='".$urlbtn2."' class='boton ".$clasebtn2."'>".$boton2."</a>
 		</div>";
 	}
 	

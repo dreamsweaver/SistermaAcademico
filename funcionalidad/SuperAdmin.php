@@ -21,12 +21,14 @@ class SuperAdmin extends Usuario implements Login {
 		$this->_con = new Conexion();
 		date_default_timezone_set("America/El_Salvador");
 		parent::__construct($nombre,$apellido,$email,$id);
+		$this->_con->conectar();
 	}
 	
 //Metodo para iniciar sesión desde super admin, se inician las sesiones y se crean cookies
 	public function iniciarSesion($email,$password) {
-		$this->_con->conectar();
-		$res = $this->_con->consulta("select * from super_admin where email='".$email."' and password = '".$password."'",'para verificar el usuario');
+		$this->_password = $password;
+		$this->_email = $email;
+		$res = $this->_con->consulta("select * from superadmin where email_puseradmin='".$this->_email."' and password_puseradmin = '".$this->_password."'",'Error al verificar el usuario en la base de datos');
 		if($row = $this->_con->valores($res)) {
 			session_start();
 			$name = $row['nombre_superadmin'];
@@ -54,5 +56,19 @@ class SuperAdmin extends Usuario implements Login {
 		} else {
 			throw new Exception('No se ha podido cerrar la sesion, vuelva a intentarlo');
 		}
+	}
+	
+	public function getSuperadmin($id){
+		$sel = $this->_con->consulta("select * from superadmin where id_superadmin = '".$id."'","Error al consultar al Administrador");
+		return ($sel)?$sel:false;
+	}
+	
+	public function getSuperadmins(){
+		$sel = $this->_con->consulta("select * from superadmin","Error al consultar la lista de Administradores");
+		$resultado = array();
+		while($row = $this->_con->valores($sel)){
+			$resultado[] = $row;
+		}
+		return $resultado;
 	}
 }

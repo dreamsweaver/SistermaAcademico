@@ -1,5 +1,7 @@
 <?php
-//pertenece a la capa de funcionalidad, con esta clase administraremos lo que corresponda a la obtener informacion o guardarla en la base de datos
+/*pertenece a la capa de funcionalidad
+Con esta clase administraremos lo que corresponda a la obtencion de informacion o guardarla en la base de datos con respecto a las noticias del colegio
+*/
 require_once '../cgi-bin/Conexion.php';
 class AdministrarNoticias {
 	private $_id;
@@ -22,7 +24,7 @@ class AdministrarNoticias {
 	public function verNoticia($id){
 		$this->_id = $id;
 		$sel = $this->_con->consulta("select * from noticias where id_noticia='".$this->_id."'","Error al consultar la noticia solicitada");
-		return $this->_con->valores($sel);
+		return ($sel)?$this->_con->valores($sel):false;
 	}
 	
 	public function verNoticias(){
