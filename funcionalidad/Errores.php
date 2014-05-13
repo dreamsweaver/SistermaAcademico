@@ -31,6 +31,7 @@ class Error {
 		$urlbtn2   = $opciones[5];
 		
 		self::guardarLogError($error,$mensaje,$fichero,$linea);
+		self::errorATxt($error,$mensaje,$fichero,$linea);
 		return "
 		<div class='".$clase."'>
             <span class='cerrar-ventana derecha'><img src='/template/imagenes/boton-cerrar-mensajes.png' alt='X' /></span>
@@ -45,9 +46,21 @@ class Error {
 //Crea el mensaje de log para enviarlo a la funcion que almacenará en la base de datos
 	public function guardarLogError($error,$mensaje,$fichero,$linea){
 		$fecha = date("d/m/Y h:i:s A");
-		$data = "Error generado en: $fichero, error: $error, en la linea: $linea, mensaje del servidor: $mensaje. Generado el: $fecha";
+		$data = "Error generado en: ".$fichero.", error: ".$error.", en la linea: ".$linea.", mensaje del servidor: ".$mensaje.". Generado el: ".$fecha;	
 		$this->_con->conectar();
 		$this->_con->consulta("insert into errores(datos_error) values('".$data."')",NULL);
+	}
+
+//Crea un log de errores en un archivo txt
+	public function errorATxt($error,$mensaje,$fichero,$linea){
+		$archivo = "errores-sistema.txt";
+		$fecha = date("d/m/Y h:i:s A");
+		if($open = fopen($archivo,"a")){
+			$data = "Error generado en: ".$fichero.", error: ".$error.", en la linea: ".$linea.", mensaje del servidor: ".$mensaje.". Generado el: ".$fecha;
+			
+			fwrite($open,$data);
+			fclose($open);
+		}
 	}
 	
 	public function __tostring(){

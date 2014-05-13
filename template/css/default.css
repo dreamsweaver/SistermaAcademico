@@ -1,6 +1,7 @@
 @font-face {font-family: Economica; font-style: normal; font-weight: bold; src: url(../fonts/Economica-Regular.ttf);}
 @font-face {font-family: 'Roboto Condensed'; font-style: normal; font-weight: bold; src: url(../fonts/RobotoCondensed-Regular.ttf);}
-body {background-color:#e9eaed; text-align:center; font-size:62.5%; overflow:auto;}
+html {background-color:#e9eaed;}
+body {text-align:center; font-size:62.5%; overflow:auto;}
 #page {overflow:hidden;}
 p {font-size:1.6em; font-family: 'Roboto Condensed', Arial, sans-serif; line-height:1.6em; margin:1px 1px 15px 1px; text-align:justify; color:#403f3f;}
 li {font-family: 'Roboto Condensed', Arial, sans-serif; color:#403f3f;}
@@ -24,6 +25,8 @@ header {background:url(../imagenes/bg-header.png) repeat-x top left; height:111p
 .nuevo {background:url(../imagenes/noticia-nueva.png) no-repeat right 5px;}
 .panel {background-color:#fff; border-radius:7px; box-shadow:0px 0px 5px #ADADAD; padding:15px; margin:5px 0px 20px; overflow:hidden;}
 .panel img {margin:5px; border:5px solid #fff; box-shadow:0px 0px 5px #999; padding:1px;}
+.panel .no-img {margin:0px; border:none; box-shadow:none; padding:0px;}
+.panel p {display:block; clear:both;}
 .panel a {color:#47619f; text-decoration:none; border-bottom:1px dotted #47619f;}
 .panel a:hover {border:none;}
 .boton {background-color:#6c84b8; padding:8px 20px; border:1px solid #304685; box-shadow:0px 0px 4px #B4B4B4; display:inline-block; font-size:1.6em; line-height:1.5em; border-radius:3px; color:#fff!important; margin:10px;}
@@ -52,7 +55,7 @@ ul.botones-accion li {float:right; padding:1px 5px; position:relative;}
 .btn-pdf:hover {background:url(../imagenes/pdf-icon-hover.png) no-repeat top left transparent; transition:linear 0.5s;}
 .btn-subcat {background:url(../imagenes/sub-categorias-icon.png) no-repeat top left transparent; width:38px; height:35px; transition:linear 0.5s;}
 .btn-subcat:hover {background:url(../imagenes/sub-categorias-icon-hover.png) no-repeat top left transparent; transition:linear 0.5s;}
-footer {display:block; clear:both; margin:20px 0px;}
+footer {display:block; clear:both; margin:20px 0px; overflow:hidden;}
 footer .contenedor p {color:#989797;}
 footer ul {position:relative; top:-40px; margin-bottom:-30px;}
 footer ul li {float:left;}
@@ -103,7 +106,7 @@ li.rendimiento:hover {background:url(../imagenes/botones-menu-hover.png) no-repe
 .cerrar-ventana img {box-shadow:none!important; border:none!important;}
 .invisible {display:none;}
 .visible {display:block;}
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 900px) {
 html {overflow:scroll;}
 body {width:100%; position:absolute; overflow:hidden;}
 #cabeza {width:100%; padding:1%;}
@@ -111,6 +114,9 @@ body {width:100%; position:absolute; overflow:hidden;}
 .alerta {width:90%;}
 #cabeza #user {width:40%;}
 footer {overflow:hidden;}
+}
+@media only screen and (max-width: 768px) {
+.tem {display:none;}
 }
 @media only screen and (max-width: 640px) {
 #logo h1 {float:left; font-size:1.7em; font-weight:bold;}

@@ -2,6 +2,8 @@
 <html>
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <link rel="stylesheet" type="text/css" href="css/reset.css" />
 <link rel="stylesheet" type="text/css" href="css/default.css" />
 <link rel="stylesheet" type="text/css" href="css/imprimir.css" media="print" />
@@ -14,6 +16,7 @@
 <script src="js/jquery.superLabels.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/scripts.js"></script>
 <title>Template Sistema CCE</title>
+<meta name="viewport" content="width=device-width, maximum-scale=2"/>
 </head>
 
 <body>

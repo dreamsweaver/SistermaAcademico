@@ -1,2 +1,53 @@
-#RewriteEngine On
-#RewriteBase /SistemaAcademico/
+Options -Indexes
+Options +FollowSymlinks
+Options +SymLinksIfOwnerMatch
+Options All -Indexes
+Options ExecCGI Includes IncludesNOEXEC SymLinksIfOwnerMatch -Indexes
+RewriteEngine On
+RewriteBase /SistemaAcademico/
+
+RewriteRule ^404-contenido-no-encontrado$ error404.php
+RewriteRule ^403-contenido-privado$ error403.php
+RewriteRule ^500-error-de-servidor$ error500.php
+
+ErrorDocument 404 http://localhost/SistemaAcademico/404-contenido-no-encontrado
+ErrorDocument 403 http://localhost/SistemaAcademico/403-contenido-privado
+ErrorDocument 500 http://localhost/SistemaAcademico/500-error-de-servidor
+
+AddDefaultCharset utf-8
+#php_flag display_errors Off
+<FilesMatch "^\.(ht)|\.(ini|phps|log|sh|bak|1|old|swp)$|(\.*~)$">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>
+#Block bad bots
+SetEnvIfNoCase user-Agent ^FrontPage [NC,OR]
+SetEnvIfNoCase user-Agent ^Java.* [NC,OR]
+SetEnvIfNoCase user-Agent ^Microsoft.URL [NC,OR]
+SetEnvIfNoCase user-Agent ^MSFrontPage [NC,OR]
+SetEnvIfNoCase user-Agent ^Offline.Explorer [NC,OR]
+SetEnvIfNoCase user-Agent ^[Ww]eb[Bb]andit [NC,OR]
+SetEnvIfNoCase user-Agent ^Zeus [NC]
+RewriteCond %{QUERY_STRING} (;|<|>|Õ|Ó|\)|%0A|%0D|%22|%27|%3C|%3E|%00).*(/\*|union|select|insert|cast|set|declare|drop|update|md5|benchmark) [NC,OR]
+RewriteCond %{QUERY_STRING} \.\./\.\. [OR]
+RewriteCond %{QUERY_STRING} (localhost|loopback|127\.0\.0\.1) [NC,OR]
+RewriteCond %{QUERY_STRING} \.[a-z0-9] [NC,OR]
+RewriteCond %{QUERY_STRING} (<|>|Õ|%0A|%0D|%27|%3C|%3E|%00) [NC]
+RewriteRule .* - [F]
+RewriteCond %{HTTP_USER_AGENT} ^$ [OR]
+RewriteCond %{HTTP_USER_AGENT} ^(java|curl|wget) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} (winhttp|HTTrack|clshttp|archiver|loader|email|harvest|extract|grab|miner) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} (libwww-perl|curl|wget|python|nikto|scan) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} (<|>|Õ|%0A|%0D|%27|%3C|%3E|%00) [NC]
+RewriteRule .* - [F]
+RewriteCond %{REQUEST_METHOD} GET
+RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=http:// [OR]
+RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=(\.\.//?)+ [OR]
+RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=/([a-z0-9_.]//?)+ [NC]
+RewriteRule .* - [F]
+RewriteEngine On
+RewriteCond %{REQUEST_METHOD} POST
+RewriteCond %{REQUEST_URI} .wp-comments-post.php*
+#RewriteCond %{HTTP_REFERER} !.*santosxpress.com.* [OR]
+RewriteCond %{HTTP_USER_AGENT} ^$
+RewriteRule (.*) ^http://%{REMOTE_ADDR}/$ [R=301,L]

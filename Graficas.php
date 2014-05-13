@@ -1,6 +1,7 @@
 <?php
-include_once "FusionCharts/fusionCharts.php";
-include_once "FusionCharts/Functions.php";
+//require_once "funcionalidad/constantes.php";
+require_once "FusionCharts/fusionCharts.php";
+require_once "FusionCharts/Functions.php";
 /*
 Pertenece a la capa de interfaz
 
@@ -21,7 +22,7 @@ class Graficas{
 		$chart = "<chart yAxisName='".$tituloY."' caption='".$tituloP."' numberPrefix='".$prefijo."' useRoundEdges='".$redondeo."' bgColor='".$_bg."' showBorder='".$_borde."' animation='1'>";
 		$chart .= $datos;
 		$chart .= '</chart>';
-		return renderChart("FusionCharts/Charts/Column2D.swf", "",($chart), "chartb2d", 600, 300, false, true);
+		return renderChart("/SistemaAcademico/FusionCharts/Charts/Column2D.swf", "",($chart), "chartb2d", 600, 300, false, true);
 	}
 	
 	/*
@@ -35,7 +36,7 @@ class Graficas{
 		$chart = "<chart yAxisName='".$tituloY."' caption='".$tituloP."' numberPrefix='".$prefijo."' showBorder='".$_borde."' bgColor='FFFFFF,ffffff' animation='1'>";
 		$chart .= $datos;
 		$chart .= "</chart>";
-		return renderChart("FusionCharts/Charts/Column3D.swf", "",($chart), "chartb3d", 600, 300, false, true);
+		return renderChart("/SistemaAcademico/FusionCharts/Charts/Column3D.swf", "",($chart), "chartb3d", 600, 300, false, true);
 	}
 	
 	/*
@@ -48,7 +49,7 @@ class Graficas{
 		$chart = "<chart caption='".$tituloP."' showPercentageInLabel='".$_porcentaje."' showValues='".$_valores."' showLabels='".$_etiquetas."' showLegend='".$_leyenda."' bgColor='".$_bg."' showBorder='".$_border."' animation='1'>";
 		$chart .= $datos;
 		$chart .= "</chart>";
-		return renderChart("FusionCharts/Charts/Pie2D.swf", "",($chart), "chartp2d", 600, 300, false, true);
+		return renderChart("/SistemaAcademico/FusionCharts/Charts/Pie2D.swf", "",($chart), "chartp2d", 600, 300, false, true);
 	}
 	
 	/*
@@ -65,7 +66,7 @@ class Graficas{
 		$chart .= $datos;
 		$chart .= "<styles><definition><style type='font' name='CaptionFont' color='666666' size='15' /><style type='font' name='SubCaptionFont' bold='0' /></definition><application><apply toObject='caption' styles='CaptionFont' /><apply toObject='SubCaption' styles='SubCaptionFont' /></application></styles></chart>";
 			
-		return renderChart("FusionCharts/Charts/Pie3D.swf", "",($chart), "chartp3d", 600, 300, false, true);
+		return renderChart("/SistemaAcademico/FusionCharts/Charts/Pie3D.swf", "",($chart), "chartp3d", 600, 300, false, true);
 	}
 	
 	/*
@@ -82,7 +83,7 @@ class Graficas{
         $chart .= $datos;
 		$chart .= "</chart>";
 		
-		return renderChart("FusionCharts/Charts/Doughnut2D.swf", "",($chart), "chartd2d", 600, 300, false, true);
+		return renderChart("/SistemaAcademico/FusionCharts/Charts/Doughnut2D.swf", "",($chart), "chartd2d", 600, 300, false, true);
 	}
 	
 	/*
@@ -101,7 +102,7 @@ class Graficas{
 		$chart .= $datos;
 		$chart .= "</chart>";
 		
-		return renderChart("FusionCharts/Charts/Doughnut3D.swf", "",($chart), "chartd3d", 600, 300, false, true);
+		return renderChart("/SistemaAcademico/FusionCharts/Charts/Doughnut3D.swf", "",($chart), "chartd3d", 600, 300, false, true);
 	}
 	
 	/*
@@ -119,7 +120,7 @@ class Graficas{
 		$chart .= $datos;
 		$chart .= "<styles> <definition> <style name='LineShadow' type='shadow' color='333333' distance='6'/> </definition> <application> <apply toObject='DATAPLOT' styles='LineShadow' /> </application> </styles> </chart>";
 		
-		return renderChart("FusionCharts/Charts/Line.swf", "",($chart), "chartl2d", 600, 300, false, true);
+		return renderChart("/SistemaAcademico/FusionCharts/Charts/Line.swf", "",($chart), "chartl2d", 600, 300, false, true);
 	}
 	
 	/*
@@ -141,7 +142,7 @@ class Graficas{
 		$chart .= $datos;
 		$chart .= "</chart>";
 		
-		return renderChart("FusionCharts/Charts/MSLine.swf", "",($chart), "chartml2d", 600, 300, false, true);
+		return renderChart("/SistemaAcademico/FusionCharts/Charts/MSLine.swf", "",($chart), "chartml2d", 600, 300, false, true);
 	}
 	
 	/*
@@ -163,7 +164,7 @@ class Graficas{
 		$chart .= $datos;
 		$chart .= "<styles> <definition> <style name='captionFont' type='font' size='15' /> </definition> <application> <apply toObject='caption' styles='captionfont' /> </application> </styles> </chart>";
 		
-		return renderChart("FusionCharts/Charts/MSCombi3D.swf", "",($chart), "chartl3d", 600, 300, false, true);
+		return renderChart("/SistemaAcademico/FusionCharts/Charts/MSCombi3D.swf", "",($chart), "chartl3d", 600, 300, false, true);
 	}
 	
 	/*
@@ -182,7 +183,7 @@ class Graficas{
 		$chart .= $datos;
  		$chart .= "</chart>";
 		
-		return renderChart("FusionCharts/Charts/Area2D.swf", "",($chart), "charta2d", 600, 300, false, true);
+		return renderChart("/SistemaAcademico/FusionCharts/Charts/Area2D.swf", "",($chart), "charta2d", 600, 300, false, true);
 	}
 	
 	public function graficaArea3d($categorias,$datos,$titulo,$tituloX,$tituloY,$_prefijo = '',$_showLabels = '1',$_showValues = '0',$_bgColor = 'ffffff',$_plotFillAlpha = '70',$_numVDivLines = '10',$_showAlternateVGridColor = '1',$_alternateVGridColor = 'e1f5ff',$_divLineColor = 'e1f5ff',$_vDivLineColor = 'e1f5ff',$_baseFontColor = '666666',$_canvasBorderTickness = '1',$_showPlotBorder = '0',$_plotBorderThickness = '0',$_startAngleX = '7',$_endAngleX = '7',$_startAngleY = '-18',$_endAngleY = '-18',$_zGapPlot = '30',$_zDepth = '50',$_exeTime = '2',$_outCanvasFontColor = '666666',$_border = '0'){
@@ -195,7 +196,7 @@ class Graficas{
 		$chart .= $datos;
 		$chart .= "<styles> <definition> <style name='captionFont' type='font' size='15' /> </definition> <application> <apply toObject='caption' styles='captionfont' /> </application> </styles> </chart>";
 		
-		return renderChart("FusionCharts/Charts/MSCombi3D.swf", "",($chart), "charta3d", 600, 300, false, true);
+		return renderChart("/SistemaAcademico/FusionCharts/Charts/MSCombi3D.swf", "",($chart), "charta3d", 600, 300, false, true);
 	}
 	
 	public function graficaBarraHorizontal2d($datos,$titulo,$tituloY,$tituloX,$_bg = 'FFFFFF',$_showValues = '1',$_canvasBorderThickness = '1',$_canvasBorderColor = '999999',$_plotFillAngle = '330',$_plotBorderColor = '999999',$_showAlternateVGridColor = '1',$_divLineAlpha = '0',$_border = '0'){
@@ -204,7 +205,7 @@ class Graficas{
         $chart .= $datos;
 		$chart .= "</chart>";
 		
-		return renderChart("FusionCharts/Charts/Bar2D.swf", "",($chart), "chartbh2d", 600, 300, false, true);
+		return renderChart("/SistemaAcademico/FusionCharts/Charts/Bar2D.swf", "",($chart), "chartbh2d", 600, 300, false, true);
 	}
 	
 	
@@ -217,48 +218,47 @@ class Graficas{
 		$chart .= $datos;
 		$chart .= "</chart>";
 		
-		return renderChart("FusionCharts/Charts/StackedBar3D.swf", "",($chart), "chartbh3d", 600, 300, false, true);
+		return renderChart("/SistemaAcademico/FusionCharts/Charts/StackedBar3D.swf", "",($chart), "chartbh3d", 600, 300, false, true);
 	}
 }
 /*
 Todo lo que se ve abajo de este comentario sirve para probar las graficas generadas por las clases
 Es de ver correctamente como funciona cada gráfica, además cada formato está comentado más bajo de este comentario.
-*/
-?>
+
 <script type="text/javascript" src="template/js/jquery.js"></script>
 <script type="text/javascript" src="FusionCharts/Charts/FusionCharts.js"></script>
 <script type="text/javascript" src="FusionCharts/Charts/FusionChartsExportComponent.js"></script>
-<?php
-/*Para grafica de columna 2d
-<set label='Alex' value='25000'  /> */
-/*Para grafica de Columna 3d
-<set label='Alex' value='25000'  /> */
-/*Para grafica de pastel 2d
-<set value='14.94' label='Weather' color='429EAD'/> */
-/*Para grafica de pastel 3d
-<set label="Leverling" value="100524" isSliced="0" />*/
+
+Para grafica de columna 2d
+<set label='Alex' value='25000'  />
+Para grafica de Columna 3d
+<set label='Alex' value='25000'  />
+Para grafica de pastel 2d
+<set value='14.94' label='Weather' color='429EAD'/>
+Para grafica de pastel 3d
+<set label="Leverling" value="100524" isSliced="0" />
 /*Para graficar donas 2d
-<set value='212000' label='Banners' color='99CC00' alpha='60'/> */
+<set value='212000' label='Banners' color='99CC00' alpha='60'/>
 /*Para graficar donas 3d
-<set value='28.57' label='Production' color='2675B4' /> */
+<set value='28.57' label='Production' color='2675B4' />
 /*Para graficas Lineas 2d
-<set label='Jan' value='34' /> */
+<set label='Jan' value='34' />
 /*Para categorias graficas Lineas 3d
-<category label='Jan' /> */
+<category label='Jan' />
 /*Para graficar linea 3d
-<set value='27400' /> */
+<set value='27400' />
 /*Graficar Area 2d
-<set value="0" label="1880" color="0080C0"/> */
+<set value="0" label="1880" color="0080C0"/>
 /*Para actegorias de area 3d
-<category label='Jan' /> */
+<category label='Jan' />
 /* Para graficar areas 3d
-<set value='29800'/> */
+<set value='29800'/> 
 /* Para graficar barras horizontales en 2d
-<set label='Microsoft' value='56926' toolText='2006 Rank: 2, Country: US'/> */
+<set label='Microsoft' value='56926' toolText='2006 Rank: 2, Country: US'/> 
 /*Categorias barras horinzontales 3d
-<category label='Product B' />*/
+<category label='Product B' />
 /*Para graficar las barras horizontales en 3d
-<set value='20148.82' /> */
+<set value='20148.82' /> 
 
 //Desde acá comienzan las pruebas
 $chart = new Graficas;
@@ -342,4 +342,4 @@ echo $chart->graficaPastel2d($valpas2d,'Titulo principal');
 echo $chart->graficaPastel3d($valpas3d,'Titulo principal','Subtitulo','');
 echo $chart->graficaBarras3d($valbar3d,'Numeros','Titulo Principal','$');
 echo $chart->graficaBarras2d($valbar2d,'Numeros','Titulo Princiapal','#','2');
-?>
+?>*/
