@@ -128,7 +128,7 @@
     </div>
     <footer>
     	<div class="contenedor">
-        	<p>Todos los derechos reservados © 2014  | Colegio Cristiano Emanuel</p>
+        	<p>Todos los derechos reservados &copy; 2014  | Colegio Cristiano Emanuel</p>
             <ul class="derecha">
             	<li><a href="" class="twitter" title="Ir a nuestra cuenta de Twitter">Twitter</a></li>
                 <li><a href="" class="facebook" title="Ir a nuestra fan page de Facebook">Facebook</a></li>

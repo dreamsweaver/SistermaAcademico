@@ -56,7 +56,7 @@ class Error {
 		$archivo = "errores-sistema.txt";
 		$fecha = date("d/m/Y h:i:s A");
 		if($open = fopen($archivo,"a")){
-			$data = "Error generado en: ".$fichero.", error: ".$error.", en la linea: ".$linea.", mensaje del servidor: ".$mensaje.". Generado el: ".$fecha;
+			$data = "Error generado en: ".$fichero.", error: ".$error.", en la linea: ".$linea.", mensaje del servidor: ".$mensaje.". Generado el: ".$fecha."\n";
 			
 			fwrite($open,$data);
 			fclose($open);
