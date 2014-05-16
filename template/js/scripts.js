@@ -58,6 +58,36 @@ $(document).ready(function() {
 		});
 	}
 	
+	$.ionSound({
+    	sounds: [
+        	"beer_can_opening",
+			"button_tiny",
+			"pop_cork",
+			"tap",
+			"water_droplet",
+			"water_droplet_3"
+        ],
+        path: "sounds/",
+        multiPlay: true,
+        volume: "0.5"
+    });
+	
+    $("#menu-left li").on("mouseenter", function(){
+    	$.ionSound.play("beer_can_opening");
+    });
+	$(".btn-opciones").on("mousedown", function(){
+    	$.ionSound.play("button_tiny");
+    });
+	$(".boton, .cerrar-ventana").on("mousedown", function(){
+		$.ionSound.play("pop_cork");
+    });
+	$(".botones-accion").on("mouseover", function(){
+        $.ionSound.play("water_droplet");
+    });
+	$(".botones-accion").on("mousedown", function(){
+    	$.ionSound.play("water_droplet_3");
+    });
+	
 });
 
 jQuery(function($) {

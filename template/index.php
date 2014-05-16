@@ -1,3 +1,6 @@
+<?php
+require_once '../funcionalidad/GeneralesSistema.php';
+?>
 <!doctype html>
 <html>
 <head>
@@ -15,6 +18,7 @@
 <script src="js/hideShowPassword.min.js"></script>
 <script src="js/jquery.superLabels.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/scripts.js"></script>
+<script src="js/ion.sound.js"></script>
 <title>Template Sistema CCE</title>
 <meta name="viewport" content="width=device-width, maximum-scale=2"/>
 </head>
@@ -25,7 +29,8 @@
 	<div id="cabeza">
     	<div id="logo">
         	<img src="imagenes/logo.png" />
-            <h1>Colegio Cristiano Emanuel</h1>
+            <h1><?php echo INSTITUCION; ?></h1>
+            <span><?php echo SLOGAN; ?></span>
         </div>
         <div id="user" class="visible">
         	<img src="../uploads/imagenes/alumnos/alumno.jpg" width="90" height="90" />
@@ -128,10 +133,9 @@
     </div>
     <footer>
     	<div class="contenedor">
-        	<p>Todos los derechos reservados &copy; 2014  | Colegio Cristiano Emanuel</p>
+        	<p><?php echo PIE.' '.date("Y");?> | <?php echo INSTITUCION; ?></p>
             <ul class="derecha">
-            	<li><a href="" class="twitter" title="Ir a nuestra cuenta de Twitter">Twitter</a></li>
-                <li><a href="" class="facebook" title="Ir a nuestra fan page de Facebook">Facebook</a></li>
+            	<?php echo REDES; ?>
             </ul>
         </div>
     </footer>

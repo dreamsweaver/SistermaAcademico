@@ -12,7 +12,8 @@ header {background:url(../imagenes/bg-header.png) repeat-x top left; height:111p
 #cabeza {width:980px; margin:0 auto; text-align:left;}
 #cabeza #logo {float:left; width:50%; height:100%; position:relative; top:5px;}
 #logo img {float:left;}
-#logo h1 {float:left; position:relative; left:10px; top:30px; color:#fff;}
+#logo h1 {float:left; position:relative; left:10px; top:20px; color:#fff;}
+#logo span {float:left; position:relative; left:97px; top:-30px; color:#fff; display:block; clear:both; font-size:1.6em; letter-spacing:1.5px; word-spacing:2px;}
 #cabeza #user {float:right; width:220px; position:relative; top:7px;}
 #user img {float:left; margin-right:5px;}
 #user ul {float:left; margin:10px;}

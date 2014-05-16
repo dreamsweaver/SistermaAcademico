@@ -1,5 +1,5 @@
 <?php
-require_once 'funcionalidad/GeneralesSistema.php';
+require_once '../funcionalidad/GeneralesSistema.php';
 class TemplateUsuario {
 	
 	public function head($titulo,$path = './'){
